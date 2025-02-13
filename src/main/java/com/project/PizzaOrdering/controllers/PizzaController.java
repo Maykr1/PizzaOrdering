@@ -1,10 +1,8 @@
 package com.project.PizzaOrdering.controllers;
 
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
-
 
 
 @RestController
@@ -33,22 +30,20 @@ public class PizzaController {
         Iterable<Pizza> pizzas = pizzaRepository.findAll();
         return pizzas;
     }
-
+    /*
     @PostMapping()
     public String createNewPizza(@RequestParam String name, @RequestParam Double price, @RequestParam String size, @RequestParam List<String> toppings) {
-        Pizza newPizza = new Pizza(null, name, price, size, toppings);
+        Pizza newPizza = new Pizza(null, name, price, size, toppings); //Why does it need null for id?
         pizzaRepository.save(newPizza);
         return "New Pizza has been added to the menu!";
     }
-
-    /*
-    Possibly do this instead:
+    */
+    
     @PostMapping("/addPizza")
     public Pizza createNewPizza(@RequestBody Pizza pizza) {
         Pizza newPizza = this.pizzaRepository.save(pizza);
         return newPizza;
     }
-    */
     
     @PutMapping("/{id}")
     public Pizza updatePizza(@PathVariable("id") Integer id, @RequestBody Pizza pizza) {
